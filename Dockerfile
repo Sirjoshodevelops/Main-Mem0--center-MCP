@@ -1,18 +1,20 @@
 FROM python:3.12-slim
 
-ENV PORT=8080
+ARG PORT=8080
 
 WORKDIR /app
 
 # Install uv
 RUN pip install uv
 
-# Copy your code
+# Copy the MCP server files
 COPY . .
 
-# Install dependencies globally (inside container)
+# Install packages
+RUN python -m venv .venv
 RUN uv pip install -e .
 
 EXPOSE ${PORT}
 
+# Command to run the MCP server
 CMD ["uv", "run", "src/main.py"]
