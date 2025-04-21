@@ -14,7 +14,7 @@ COPY . .
 RUN python -m venv .venv
 RUN uv pip install -e .
 
-EXPOSE ${PORT}
+EXPOSE 8080
 
 # Command to run the MCP server
 CMD ["uv", "run", "src/main.py"]
