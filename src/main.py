@@ -17,7 +17,10 @@ transport = os.getenv("TRANSPORT", "stdio")
 host = os.getenv("HOST", "0.0.0.0")
 port = int(os.getenv("PORT", "8080"))
 
-from mcp.server.fastmcp import mcp
+from mcp.server.fastmcp import FastMCP
+
+mcp = FastMCP()
+
 print("Registered tools:", mcp.tools)
 
 
