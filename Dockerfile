@@ -1,6 +1,7 @@
 FROM python:3.12-slim
 
-ARG PORT=8050
+# Railway injects PORT at runtime
+ENV PORT=8080
 
 WORKDIR /app
 
@@ -10,11 +11,12 @@ RUN pip install uv
 # Copy the MCP server files
 COPY . .
 
-# Install packages
+# Install dependencies in a virtual environment
 RUN python -m venv .venv
-RUN uv pip install -e .
+RUN .venv/bin/uv pip install -e .
 
+# Expose the runtime port (Railway listens here)
 EXPOSE ${PORT}
 
-# Command to run the MCP server
-CMD ["uv", "run", "src/main.py"]
+# Run the app on the correct port
+CMD [".venv/bin/uv", "run", "src/main.py"]
