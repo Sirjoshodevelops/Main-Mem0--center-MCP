@@ -21,6 +21,17 @@ from mcp.server.fastmcp import FastMCP
 
 mcp = FastMCP()
 
+@mcp.tool()
+def ping() -> str:
+    return "pong"
+
+# Optional: debug tool list
+print("Registered tools:", [t.name for t in mcp._tool_registry.tools])
+
+if __name__ == "__main__":
+    mcp.run()
+
+
 print("Registered tools:", mcp.tools)
 
 
