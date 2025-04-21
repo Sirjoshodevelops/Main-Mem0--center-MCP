@@ -13,6 +13,14 @@ from utils import get_mem0_client
 
 load_dotenv()
 
+transport = os.getenv("TRANSPORT", "stdio")
+host = os.getenv("HOST", "0.0.0.0")
+port = int(os.getenv("PORT", "8080"))
+
+from mcp.server.fastmcp import mcp
+print("Registered tools:", mcp.tools)
+
+
 # Default user ID for memory operations
 DEFAULT_USER_ID = "user"
 
