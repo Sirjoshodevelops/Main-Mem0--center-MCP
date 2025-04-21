@@ -5,6 +5,7 @@ from dataclasses import dataclass
 from dotenv import load_dotenv
 from mem0 import Memory
 import asyncio
+import httpx
 import json
 import os
 
